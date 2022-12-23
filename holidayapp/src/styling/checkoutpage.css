@@ -1,0 +1,95 @@
+.checkout-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.checkout-page .cart {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkout-page .cart-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.checkout-page .cart-item h4 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.checkout-page .cart-item p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.checkout-page .cart-item button {
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #333;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.checkout-page .cart-item button:hover {
+  background-color: #666;
+}
+
+.checkout-page .payment-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+}
+
+.checkout-page .payment-form label {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.checkout-page .payment-form input {
+  font-size: 1rem;
+  color: #333;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.checkout-page .payment-form input:focus {
+  outline: none;
+  border-color: #999;
+}
+
+.checkout-page .payment-form button {
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #333;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.checkout-page .payment-form button:hover {
+  background-color: #666;
+}

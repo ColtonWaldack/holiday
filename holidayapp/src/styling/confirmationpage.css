@@ -1,0 +1,47 @@
+.confirmation-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.confirmation-page h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0
+}
+
+.confirmation-page .order-details {
+    width: 50%;
+    text-align: left;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.confirmation-page .order-details h4 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.confirmation-page .order-details li {
+    list-style: none;
+    margin: 5px 0;
+}
+
+.confirmation-page button {
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.confirmation-page button:hover {
+    background-color: #666;
+}
