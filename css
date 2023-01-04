@@ -34,7 +34,7 @@
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .recipe li {
@@ -48,6 +48,7 @@
 .recipe ol {
   margin: 20px 0;
   padding: 0;
+  text-align: center;
 }
 
 .recipe li:not(:last-child) {
@@ -59,6 +60,7 @@
   flex-direction: column;
   width: 80%;
   margin: 20px 0;
+  text-align: center;
 }
 
 .recipe textarea {
@@ -89,6 +91,7 @@
 .recipe .comments {
   margin: 20px 0;
   padding: 0;
+  text-align: center;
 }
 
 .recipe .comments li {
