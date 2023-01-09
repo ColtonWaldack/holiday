@@ -115,4 +115,19 @@ const Comment = ({ index, details, editComment, deleteComment }) => {
     <div>
       {editMode ? renderCommentEdit() : renderCommentRead()}
       <button
-        className="button button-outline comment-button action
+        className="button button-outline comment-button action-button expand-right"
+        onClick={() => setEditMode(!editMode)}
+      >
+        Edit
+      </button>
+      <button
+        className="button alert comment-button action-button expand-right"
+        onClick={deleteCommentHandler}
+      >
+        Delete
+      </button>
+    </div>
+  );
+};
+
+export default RecipePage;
