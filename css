@@ -1,104 +1,118 @@
-.recipe {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 50%;
-  margin: 0 auto;
-  font-family: sans-serif;
-}
+import React, { useState } from 'react';
 
-.recipe img {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-  object-fit: cover;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-}
+const RecipePage = () => {
+  const [comments, setComments] = useState({});
 
-.recipe h2 {
-  margin: 20px 0 10px;
-  font-size: 2em;
-  text-align: center;
-}
+  const addComment = (commentData) => {
+    const timeStamp = new Date().getTime();
+    setComments({ ...comments, [`comment-id${timeStamp}`]: commentData });
+  };
 
-.recipe h3 {
-  margin: 20px 0 10px;
-  font-size: 1.5em;
-  text-align: center;
-}
+  const editComment = (commentID, editedData) => {
+    setComments({
+      ...comments,
+      [commentID]: {
+        ...comments[commentID],
+        commentBody: editedData,
+      },
+    });
+  };
 
-.recipe ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
+  const deleteComment = (commentID) => {
+    const updatedComments = { ...comments };
+    delete updatedComments[commentID];
+    setComments(updatedComments);
+  };
 
-.recipe li {
-  margin: 5px;
-  padding: 10px;
-  background-color: #fafafa;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+  const renderComment = (key) => {
+    return (
+      <li key={key}>
+        <Comment
+          index={key}
+          details={comments[key]}
+          editComment={editComment}
+          deleteComment={deleteComment}
+        />
+      </li>
+    );
+  };
 
-.recipe ol {
-  margin: 20px 0;
-  padding: 0;
-  text-align: center;
-}
+  return (
+    <div>
+      <ol className="comment-list">{Object.keys(comments).map(renderComment)}</ol>
+      <AddCommentForm addComment={addComment} />
+      <pre>{JSON.stringify(comments, null, 2)}</pre>
+    </div>
+  );
+};
+const AddCommentForm = ({ addComment }) => {
+  const processComment = (event) => {
+    event.preventDefault();
 
-.recipe li:not(:last-child) {
-  margin-bottom: 10px;
-}
+    const commentData = {
+      commentName: event.target.name.value,
+      commentBody: event.target.desc.value,
+    };
 
-.recipe form {
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  margin: 20px 0;
-  text-align: center;
-}
+    addComment(commentData);
+    event.target.reset();
+  };
 
-.recipe textarea {
-  font-family: sans-serif;
-  font-size: 1em;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  resize: vertical;
-}
+  return (
+    <div className="callout secondary">
+      <h4 className="leave-comment">Add a Comment</h4>
+      <form className="post-edit" onSubmit={processComment}>
+        <input type="text" name="name" placeholder="Your Name" required />
+        <textarea name="desc" placeholder="Add your comment here" required />
+        <button
+          id="submit"
+          type="submit"
+          className="button button-outline comment-button action-button expand-right"
+        >
+          Add Comment
+        </button>
+      </form>
+    </div>
+  );
+};
 
-.recipe button[type='submit'] {
-  margin-top: 10px;
-  padding: 10px;
-  font-family: sans-serif;
-  font-size: 1em;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
+const Comment = ({ index, details, editComment, deleteComment }) => {
+  const [editMode, setEditMode] = useState(false);
 
-.recipe button[type='submit']:hover {
-  background-color: #45a049;
-}
+  const renderCommentRead = () => {
+    return (
+      <div className="comment-text">
+        <p>{details.commentBody}</p>
+      </div>
+    );
+  };
 
-.recipe .comments {
-  margin: 20px 0;
-  padding: 0;
-  text-align: center;
-}
+  const editCommentHandler = (event) => {
+    event.preventDefault();
+    editComment(index, event.target.editText.value);
+    setEditMode(false);
+  };
 
-.recipe .comments li {
-  list-style: none;
-  margin: 10px 0;
-  padding: 10px;
-  background-color: #fafafa;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+  const deleteCommentHandler = () => {
+    deleteComment(index);
+  };
+
+  const renderCommentEdit = () => {
+    return (
+      <form className="post-edit" onSubmit={editCommentHandler}>
+        <textarea ref="editText" defaultValue={details.commentBody} required />
+        <button
+          type="submit"
+          className="button button-outline comment-button action-button expand-right"
+        >
+          Save
+        </button>
+      </form>
+    );
+  };
+
+  return (
+    <div>
+      {editMode ? renderCommentEdit() : renderCommentRead()}
+      <button
+        className="button button-outline comment-button action
