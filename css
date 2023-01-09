@@ -66,7 +66,17 @@ const AddCommentForm = ({ addComment }) => {
       <h4 className="leave-comment">Add a Comment</h4>
       <form className="post-edit" onSubmit={processComment}>
         <input type="text" ref={nameInput} placeholder="Your Name" required />
-)
+        <textarea ref={descInput} placeholder="Add your comment here" required />
+        <button
+          type="submit"
+          className="button button-outline comment-button action-button expand-right"
+        >
+          Add Comment
+        </button>
+      </form>
+    </div>
+  );
+};
 
 
 import React, { useState, useRef } from 'react';
